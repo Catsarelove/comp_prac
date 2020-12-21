@@ -77,7 +77,6 @@ def LU(A, b):
 		A = M@A
 		
 	x_1 = x(L, b)
-	print(x_1)
 	x_2 = x_(A, x_1)
 	return x_2
 	
