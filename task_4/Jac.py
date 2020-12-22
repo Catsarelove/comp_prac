@@ -59,6 +59,7 @@ def b(A):
 
 
 def Gersh(A, eps):
+	A = A
 	n = 0
 	m = len(A[0])
 	abs = np.abs
@@ -67,16 +68,17 @@ def Gersh(A, eps):
 
 	while r.max() > eps:
 		k = am(r)
+		temp = A[k][k]
+		A[k][k] = 0
 		j = 0	            
 		for i in range(m):
-			if i != k and abs(A[k][i]) > abs(A[k][j]):
+			if i != k and abs(A[k][i]) >= abs(A[k][j]):
 				j = i
-		r[j] = R_i(A, j)
-		r[k] = R_i(A, k)
-		
+		A[k][k] = temp
 		t = T_(A, k, j)
 		A = t@A@t.T
-		print(A)
+		r[j] = R_i(A, j)
+		r[k] = R_i(A,k)
 		n += 1
 	eign = [A[i][i] for i in range(m)]
 	print('Количество итераций по кругам Гершгорина: %d', n)

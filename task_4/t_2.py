@@ -15,9 +15,13 @@ for i in range(6):
 print('начальная матрица:')
 print(A)
 print('собственные числа:')
-print(np.linalg.eigvals(A))
+l = np.sort(np.linalg.eigvals(A))
+print(l)
 
 print('Выбор обнуляемого элемента по стратегии "преград-барьеров"')
-print(Jac.Bound(A, eps))
+b = np.sort(Jac.Bound(A, eps))
+print('Погрешность:', np.linalg.norm(b - l))
 print('Выбор обнуляемого элемента по максимальному радиуса круга Гершгорина')
-print(Jac.Gersh(A, eps))
+g = np.sort(Jac.Gersh(A, eps))
+
+print('Погрешность:', np.linalg.norm(g-l))

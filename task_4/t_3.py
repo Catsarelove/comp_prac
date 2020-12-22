@@ -3,7 +3,7 @@ import math
 import matplotlib.pyplot as plt
 import Jac
 
-eps = 1.e-10
+eps = 1.e-20
 
 
 A = np.array([[3, 0, 2], [0, 4, 4], [2, 4, 4]])
@@ -11,9 +11,13 @@ A = np.array([[3, 0, 2], [0, 4, 4], [2, 4, 4]])
 print('начальная матрица:')
 print(A)
 print('собственные числа:')
-print(np.linalg.eigvals(A))
+l = np.sort(np.linalg.eigvals(A))
+print(l)
 
 print('Выбор обнуляемого элемента по стратегии "преград-барьеров"')
-print(Jac.Bound(A, eps))
+b = np.sort(Jac.Bound(A, eps))
+print('Погрешность:', np.linalg.norm(b - l))
 print('Выбор обнуляемого элемента по максимальному радиуса круга Гершгорина')
-print(Jac.Gersh(A, eps))
+g = np.sort(Jac.Gersh(A, eps))
+
+print('Погрешность:', np.linalg.norm(g-l))
