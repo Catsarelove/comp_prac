@@ -6,12 +6,12 @@ def norm(v):
 	r = math.sqrt(r)
 	return r
 
-def Power(A, eps):
+def Power(A, x, eps):
 	
 	n = 3
 	A_dot = A.dot
 	m = len(A[0])
-	x_1 = A.T[0] 
+	x_1 = x 
 	x_2 = A.dot(x_1)
 	x_3 = A_dot(x_2)
 
@@ -29,13 +29,13 @@ def Power(A, eps):
 	print('Количество итераций:',n)
 	return t
 
-def Smul(A, eps):
+def Smul(A, x, eps):
 	A_dot = A.dot
 	T = A.T
 	T_dot = T.dot
 	n = 3
 	m = len(A[0])
-	x_1 = A.T[0]
+	x_1 = x
 	y = np.sin(x_1)
 	x_2 = A_dot(x_1)
 	x_3 = A_dot(x_2) 
